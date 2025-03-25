@@ -1,0 +1,60 @@
+/* color palette from <https://github.com/vuejs/theme> */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import './primevue/tailwind.css';
+
+@layer base {
+  :root {
+    --primary-50: #fff4ed;
+    --primary-100: #ffe5d4;
+    --primary-200: #ffc7a8;
+    --primary-300: #ffa071;
+    --primary-400: #ff7f50;
+    --primary-500: #fe4711;
+    --primary-600: #ef2d07;
+    --primary-700: #c61c08;
+    --primary-800: #9d190f;
+    --primary-900: #7e1810;
+    --primary-950: #440806;
+    --surface-50: #f7f7f7;
+    --surface-100: #ededed;
+    --surface-200: #dfdfdf;
+    --surface-300: #c8c8c8;
+    --surface-400: #b0b0b0;
+    --surface-500: #999999;
+    --surface-600: #888888;
+    --surface-700: #7b7b7b;
+    --surface-800: #676767;
+    --surface-900: #545454;
+    --surface-950: #363636;
+    --primary: #fff9f5;
+    --primary-contrast: #000000;
+    --primary-emphasis: #f8fafc;
+    --border-surface: #ededed;
+    --bg-emphasis: #dfdfdf;
+    --bg-highlight: #363636;
+    --bg-highlight-emphasis: #999999;
+    --rounded-border: 0.5rem;
+    --text-color: #000000;
+    --text-color-emphasis: #6e6e6e;
+    --text-muted-color: #7b7b7b;
+    --text-muted-color-emphasis: #c8c8c8;
+    --color-primary: #ff7f50;
+    --color-secondary: #21bbbb;
+    --color-teal: #007380;
+    --color-tomato: #ff644f;
+  }
+}
+
+html,
+body,
+#root {
+  font-family: 'Trebuchet MS', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-primary);
+  height: 100%;
+  margin: 0;
+}
