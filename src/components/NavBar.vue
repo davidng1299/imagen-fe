@@ -6,10 +6,18 @@
   <div class="bg-color-primary h-14 flex justify-between items-center px-4">
     <div>ImaGen Logo</div>
     <div class="flex gap-2">
-      <Button label="Log in" />
-      <Button label="Sign up" />
+      <Button label="Log in" class="login-button" />
+      <Button label="Sign up" class="login-button" />
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+  .login-button {
+    background-color: black;
+    &:hover {
+      background-color: var(--primary);
+      color: black;
+    }
+  }
+</style>

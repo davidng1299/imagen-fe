@@ -1,9 +1,16 @@
 /* color palette from <https://github.com/vuejs/theme> */
+@import 'primevue/tailwind.css' layer(primevue-tailwind);
 
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-@import './primevue/tailwind.css';
+@layer tailwind-base, primevue, primevue-tailwind, tailwind-utilities;
+
+@layer tailwind-base {
+  @import 'tailwindcss/base';
+}
+
+@layer tailwind-utilities {
+  @import 'tailwindcss/components';
+  @import 'tailwindcss/utilities';
+}
 
 @layer base {
   :root {

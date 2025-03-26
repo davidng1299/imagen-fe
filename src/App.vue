@@ -9,9 +9,7 @@
       <NavBar />
     </header>
     <div class="flex flex-1">
-      <aside class="w-14 bg-bg-primary border-r border-gray-200">
-        <SideBar />
-      </aside>
+      <SideBar />
       <main class="flex-1 p-6 overflow-y-auto"></main>
     </div>
   </div>
