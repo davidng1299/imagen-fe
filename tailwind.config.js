@@ -16,9 +16,6 @@ export default {
         'color-teal': 'var(--color-teal)',
         'color-tomato': 'var(--color-tomato)',
       },
-      borderRadius: {
-        lg: 'var(--border-radius)',
-      },
       options: {
         cssLayer: {
           name: 'primevue',

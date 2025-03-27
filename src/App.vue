@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import NavBar from './components/NavBar.vue'
-  import SideBar from './components/SideBar.vue'
+  import NavBar from './components/NavBar/NavBar.vue'
+  import SideBar from './components/SideBar/SideBar.vue'
 </script>
 
 <template>
@@ -10,7 +10,9 @@
     </header>
     <div class="flex flex-1">
       <SideBar />
-      <main class="flex-1 p-6 overflow-y-auto"></main>
+      <main class="flex-1 p-6 overflow-y-auto flex justify-center">
+        <router-view />
+      </main>
     </div>
   </div>
 </template>

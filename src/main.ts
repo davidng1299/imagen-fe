@@ -1,3 +1,5 @@
+/* eslint-disable vue/no-reserved-component-names */
+/* eslint-disable vue/multi-word-component-names */
 import { createApp } from 'vue'
 import App from './App.vue'
 import './assets/main.css'
@@ -5,6 +7,14 @@ import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
 import 'primeicons/primeicons.css'
 import { definePreset } from '@primeuix/themes'
+import router from './router/router'
+import Button from 'primevue/button'
+import { Form } from '@primevue/forms'
+import { FormField } from '@primevue/forms'
+import InputText from 'primevue/inputtext'
+import Select from 'primevue/select'
+import SelectButton from 'primevue/selectbutton'
+import Textarea from 'primevue/textarea'
 
 const MyPreset = definePreset(Aura, {
   semantic: {
@@ -59,6 +69,13 @@ const MyPreset = definePreset(Aura, {
 })
 
 const app = createApp(App)
+app.component('Button', Button)
+app.component('Form', Form)
+app.component('FormField', FormField)
+app.component('InputText', InputText)
+app.component('Select', Select)
+app.component('SelectButton', SelectButton)
+app.component('Textarea', Textarea)
 app.use(PrimeVue, {
   theme: {
     preset: MyPreset,
@@ -72,4 +89,5 @@ app.use(PrimeVue, {
     },
   },
 })
+app.use(router)
 app.mount('#app')
