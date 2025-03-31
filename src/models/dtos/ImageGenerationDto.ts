@@ -4,3 +4,8 @@ export interface OAImageGenerationRequest {
   style: string
   quality: string
 }
+
+export interface OAImageGenerationResponse {
+  base64String: string
+  size: string
+}

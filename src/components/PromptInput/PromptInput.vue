@@ -6,6 +6,9 @@
   import Select from 'primevue/select'
   import type { FormSubmitEvent } from '@primevue/forms'
   import { usePromptApi } from '@/composables/usePromptApi'
+  import ImageModal from '../ImageModal/ImageModal.vue'
+  import type { OAImageGenerationResponse } from '@/models/dtos/ImageGenerationDto'
+  import { useToast } from 'primevue/usetoast'
 
   interface PromptInput {
     prompt: string
@@ -15,8 +18,10 @@
   }
 
   const { generateAiImage } = usePromptApi()
-
+  const toast = useToast()
   const loading = ref(false)
+  const isOpen = ref(false)
+  const response = ref<OAImageGenerationResponse | undefined>(undefined)
   const initialValues = ref<PromptInput>({
     prompt: '',
     size: '256x256',
@@ -33,21 +38,32 @@
   const onSubmit = async (event: FormSubmitEvent) => {
     try {
       loading.value = true
-      await generateAiImage({
+      response.value = await generateAiImage({
         prompt: event.states.prompt.value,
         size: event.states.size.value,
         style: event.states.style.value,
         quality: event.states.quality.value,
       })
+      isOpen.value = true
     } catch {
-      console.log('Error!')
+      toast.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'An error has occurred, please try again.',
+        life: 3000,
+      })
     } finally {
       loading.value = false
     }
   }
+
+  const onClose = () => {
+    isOpen.value = false
+  }
 </script>
 
 <template>
+  <Toast />
   <Form :initialValues :resolver @submit="onSubmit" class="w-full rounded-2xl border p-2">
     <div>
       <FormField name="size">
@@ -114,6 +130,13 @@
       </div>
     </div>
   </Form>
+
+  <ImageModal
+    v-if="response?.base64String"
+    :base64_string="response?.base64String"
+    :isOpen="isOpen"
+    :onClose="onClose"
+  />
 </template>
 
 <style scoped>

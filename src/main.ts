@@ -9,12 +9,16 @@ import 'primeicons/primeicons.css'
 import { definePreset } from '@primeuix/themes'
 import router from './router/router'
 import Button from 'primevue/button'
+import Dialog from 'primevue/dialog'
 import { Form } from '@primevue/forms'
 import { FormField } from '@primevue/forms'
+import Image from 'primevue/image'
 import InputText from 'primevue/inputtext'
 import Select from 'primevue/select'
 import SelectButton from 'primevue/selectbutton'
 import Textarea from 'primevue/textarea'
+import Toast from 'primevue/toast'
+import ToastService from 'primevue/toastservice'
 
 const MyPreset = definePreset(Aura, {
   semantic: {
@@ -70,12 +74,16 @@ const MyPreset = definePreset(Aura, {
 
 const app = createApp(App)
 app.component('Button', Button)
+app.component('Dialog', Dialog)
 app.component('Form', Form)
 app.component('FormField', FormField)
+app.component('Image', Image)
 app.component('InputText', InputText)
 app.component('Select', Select)
 app.component('SelectButton', SelectButton)
 app.component('Textarea', Textarea)
+app.component('Toast', Toast)
+
 app.use(PrimeVue, {
   theme: {
     preset: MyPreset,
@@ -89,5 +97,6 @@ app.use(PrimeVue, {
     },
   },
 })
+app.use(ToastService)
 app.use(router)
 app.mount('#app')

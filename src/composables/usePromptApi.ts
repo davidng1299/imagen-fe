@@ -1,5 +1,5 @@
 import api from '@/lib/api'
-import type { OAImageGenerationRequest } from '@/models/dtos/ImageGenerationRequestDto'
+import type { OAImageGenerationRequest } from '@/models/dtos/ImageGenerationDto'
 
 export const usePromptApi = () => {
   const generateAiImage = async (data: OAImageGenerationRequest) => {
