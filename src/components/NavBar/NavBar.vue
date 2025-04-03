@@ -28,6 +28,14 @@
     await loginWithRedirect()
   }
 
+  const signup = async () => {
+    await loginWithRedirect({
+      authorizationParams: {
+        screen_hint: 'signup',
+      },
+    })
+  }
+
   const signout = async () => {
     await logout({ logoutParams: { returnTo: window.location.origin } })
   }
@@ -43,11 +51,10 @@
     <div>ImaGen Logo</div>
     <div v-if="!isAuthenticated" class="flex gap-2">
       <Button label="Log in" @click="login" class="login-button" />
-      <Button label="Log out" @click="signout" class="login-button" />
-      <Button label="Sign up" class="login-button" />
+      <Button label="Sign up" @click="signup" class="login-button" />
     </div>
     <div v-if="isAuthenticated" class="flex gap-2">
-      <Button unstyled @click="toggle">
+      <Button unstyled @click="toggle" class="flex items-center">
         <Avatar :image="user?.picture" class="mr-2" size="medium" shape="circle" />
       </Button>
 
