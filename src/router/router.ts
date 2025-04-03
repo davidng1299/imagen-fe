@@ -1,9 +1,9 @@
 import { createWebHistory, createRouter } from 'vue-router'
-import HomePage from '@/views/HomeView.vue'
+import HomeView from '@/views/HomeView.vue'
 import PromptView from '../views/PromptView.vue'
 
 const routes = [
-  { path: '/', component: HomePage },
+  { path: '/', component: HomeView },
   { path: '/prompt', name: 'prompt', component: PromptView },
 ]
 
