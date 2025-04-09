@@ -9,3 +9,16 @@ export interface OAImageGenerationResponse {
   base64String: string
   size: string
 }
+
+export interface SaveImageRequest {
+  base64String: string
+  userId: string
+}
+
+export interface SaveImageResponse {
+  id: string
+  createdAt: string
+  base64String: string
+  userId: string
+  url: string
+}

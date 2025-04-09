@@ -5,7 +5,7 @@
   import { zodResolver } from '@primevue/forms/resolvers/zod'
   import Select from 'primevue/select'
   import type { FormSubmitEvent } from '@primevue/forms'
-  import { usePromptApi } from '@/composables/usePromptApi'
+  import { useImageApi } from '@/composables/useImageApi'
   import ImageModal from '../ImageModal/ImageModal.vue'
   import type { OAImageGenerationResponse } from '@/models/dtos/ImageGenerationDto'
   import { useToast } from 'primevue/usetoast'
@@ -17,7 +17,7 @@
     quality: string
   }
 
-  const { generateAiImage } = usePromptApi()
+  const { generateAiImage } = useImageApi()
   const toast = useToast()
   const loading = ref(false)
   const isOpen = ref(false)
@@ -73,6 +73,7 @@
           rows="3"
           class="w-full border-none shadow-none"
           style="resize: none"
+          :disabled="loading"
           placeholder="Ask anything..."
         ></Textarea>
       </FormField>

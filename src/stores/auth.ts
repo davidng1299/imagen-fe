@@ -26,7 +26,6 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async login() {
-      console.log('logging')
       await this.auth0?.loginWithRedirect()
     },
 

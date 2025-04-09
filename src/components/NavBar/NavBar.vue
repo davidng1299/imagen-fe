@@ -12,12 +12,11 @@
   watch([isAuthenticated, user], async ([isAuthenticated, user]) => {
     if (isAuthenticated && isNotEmpty(user)) {
       try {
-        const res = await getUser({
+        await getUser({
           id: getDbUserId(user?.sub),
           username: user?.nickname ?? '',
           email: user?.email ?? '',
         })
-        console.log(res)
       } catch (err) {
         console.error('Failed to load backend user:', err)
       }
