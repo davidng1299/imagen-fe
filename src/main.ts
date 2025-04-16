@@ -11,6 +11,7 @@ import router from './router/router'
 import Avatar from 'primevue/avatar'
 import Button from 'primevue/button'
 import Dialog from 'primevue/dialog'
+import Divider from 'primevue/divider'
 import { Form } from '@primevue/forms'
 import { FormField } from '@primevue/forms'
 import Image from 'primevue/image'
@@ -21,6 +22,7 @@ import SelectButton from 'primevue/selectbutton'
 import Textarea from 'primevue/textarea'
 import Toast from 'primevue/toast'
 import ToastService from 'primevue/toastservice'
+import Tooltip from 'primevue/tooltip'
 import { createPinia } from 'pinia'
 import { createAuth0 } from '@auth0/auth0-vue'
 
@@ -82,6 +84,7 @@ app.use(createPinia())
 app.component('Avatar', Avatar)
 app.component('Button', Button)
 app.component('Dialog', Dialog)
+app.component('Divider', Divider)
 app.component('Form', Form)
 app.component('FormField', FormField)
 app.component('Image', Image)
@@ -91,6 +94,7 @@ app.component('Select', Select)
 app.component('SelectButton', SelectButton)
 app.component('Textarea', Textarea)
 app.component('Toast', Toast)
+app.directive('tooltip', Tooltip)
 
 app.use(PrimeVue, {
   theme: {
@@ -109,8 +113,8 @@ app.use(ToastService)
 app.use(router)
 app.use(
   createAuth0({
-    domain: 'dev-ea035lzzioy64e1b.us.auth0.com',
-    clientId: 'ZLQ4hht7T9mFzXEVwuSGKuL8uOetefIV',
+    domain: import.meta.env.VITE_AUTH0_DOMAIN,
+    clientId: import.meta.env.VITE_AUTH0_CLIENT,
     authorizationParams: {
       redirect_uri: window.location.origin,
     },
@@ -118,7 +122,3 @@ app.use(
 )
 
 app.mount('#app')
-
-// // Initialize auth store after mount
-// const auth = useAuthStore()
-// auth.init()

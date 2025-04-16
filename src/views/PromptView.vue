@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div class="w-full max-w-[1280px] flex flex-col items-center">
+  <div class="w-full max-w-[1080px] flex flex-col items-center justify-center">
     <PromptInput />
   </div>
 </template>

@@ -54,15 +54,20 @@
     </div>
     <div v-if="isAuthenticated" class="flex gap-2">
       <Button unstyled @click="toggle" class="flex items-center">
-        <Avatar :image="user?.picture" class="mr-2" size="medium" shape="circle" />
+        <Avatar :image="user?.picture" size="medium" shape="circle" />
       </Button>
 
       <Popover ref="popover">
-        <div class="flex flex-col gap-4">
-          <div>
+        <div class="flex flex-col items-start">
+          <div class="px-2">
             <b>{{ user?.nickname }}</b>
           </div>
-          <Button outlined label="Log out" @click="signout" />
+          <Divider class="m-1" />
+          <Button
+            class="w-full px-2 text-red-500 bg-transparent hover:bg-surface-100 flex items-center justify-start border-none rounded-md"
+            @click="signout"
+            ><i class="pi pi-sign-out pr-1"></i>Log out</Button
+          >
         </div>
       </Popover>
     </div>
@@ -76,5 +81,15 @@
       background-color: var(--primary);
       color: black;
     }
+  }
+
+  .p-popover.p-popover-arrow-flipped::before {
+    left: auto;
+    right: 1.25rem;
+  }
+
+  .p-popover.p-popover-arrow-flipped::after {
+    left: auto;
+    right: 1.25rem;
   }
 </style>

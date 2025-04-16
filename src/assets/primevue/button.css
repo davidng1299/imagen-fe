@@ -3,7 +3,7 @@
 .p-button {
   @apply inline-flex cursor-pointer select-none items-center justify-center overflow-hidden relative
         bg-primary text-primary-contrast border border-primary
-        px-3 py-2 transition-colors duration-200 gap-2 rounded-xl h-9
+        px-3 py-2 transition-colors duration-200 gap-2 rounded-full h-9
         enabled:hover:bg-primary-emphasis enabled:active:bg-primary-emphasis-alt
         focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-primary
         disabled:cursor-default;
@@ -26,7 +26,7 @@
 }
 
 .p-button-icon-only {
-  @apply w-10 px-0 gap-0;
+  @apply w-10 h-10 px-0 gap-0;
 }
 
 .p-button-icon-only.p-button-rounded {
