@@ -22,3 +22,7 @@ export interface SaveImageResponse {
   userId: string
   url: string
 }
+
+export interface GetImagesRequest {
+  userId: string
+}

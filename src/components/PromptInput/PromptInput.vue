@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { ref } from 'vue'
-  import { OAImageSizeOptions, OAImageStyleOptions } from './utils/constants'
+  import { AcceptedModel3Sizes, OAImageSizeOptions, OAImageStyleOptions } from './utils/constants'
   import { z } from 'zod'
   import { zodResolver } from '@primevue/forms/resolvers/zod'
   import Select from 'primevue/select'
@@ -8,7 +8,7 @@
   import { useImageApi } from '@/composables/useImageApi'
   import ImageModal from '../ImageModal/ImageModal.vue'
   import TipsComponent from '../TipsComponent/TipsComponent.vue'
-  import type { OAImageGenerationResponse } from '@/models/dtos/ImageGenerationDto'
+  import type { OAImageGenerationResponse } from '@/models/dtos/ImageDto'
   import { useToast } from 'primevue/usetoast'
 
   interface PromptInput {
@@ -30,11 +30,21 @@
     style: 'vivid',
     quality: 'standard',
   })
+  const sizeOptions = ref(OAImageSizeOptions)
 
+  // TODO: Actually validates data
   const resolver = zodResolver(
-    z.object({
-      prompt: z.string().min(1, { message: 'Please enter a prompt' }),
-    }),
+    z
+      .object({
+        prompt: z.string().min(1, { message: 'Please enter a prompt' }),
+        size: z.string(),
+        style: z.string(),
+        quality: z.string(),
+      })
+      .refine((data) => !AcceptedModel3Sizes.includes(data.size), {
+        message: 'Please select a different size',
+        path: ['size'],
+      }),
   )
 
   const onSubmit = async (event: FormSubmitEvent) => {
@@ -85,14 +95,14 @@
         ></Textarea>
       </FormField>
 
-      <div class="flex justify-between">
+      <div class="flex justify-between items-end">
         <div class="flex gap-2 items-center">
           <FormField name="size">
             <Select
               name="size"
               optionLabel="label"
               optionValue="value"
-              :options="OAImageSizeOptions"
+              :options="sizeOptions"
               :disabled="loading"
               class="w-[110px]"
               size="small"
@@ -107,6 +117,13 @@
                 </div>
               </template>
             </Select>
+            <!-- <Message
+              v-if="$form.username?.invalid"
+              severity="error"
+              size="small"
+              variant="simple"
+              >{{ $form.username.error.message }}</Message
+            > -->
           </FormField>
 
           <FormField name="style">

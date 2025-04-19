@@ -1,10 +1,12 @@
 import api from '@/lib/api'
 import type {
+  GetImagesRequest,
   OAImageGenerationRequest,
   OAImageGenerationResponse,
   SaveImageRequest,
   SaveImageResponse,
-} from '@/models/dtos/ImageGenerationDto'
+} from '@/models/dtos/ImageDto'
+import type { OAImage } from '@/models/Image'
 
 export const useImageApi = () => {
   const generateAiImage = async (
@@ -19,5 +21,10 @@ export const useImageApi = () => {
     return res.data
   }
 
-  return { generateAiImage, saveImage }
+  const getImages = async (data: GetImagesRequest): Promise<OAImage[]> => {
+    const res = await api.get(`/api/v1/openai/images?userId=${data.userId}`)
+    return res.data
+  }
+
+  return { generateAiImage, saveImage, getImages }
 }

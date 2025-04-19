@@ -16,6 +16,7 @@ import { Form } from '@primevue/forms'
 import { FormField } from '@primevue/forms'
 import Image from 'primevue/image'
 import InputText from 'primevue/inputtext'
+import Message from 'primevue/message'
 import Popover from 'primevue/popover'
 import Select from 'primevue/select'
 import SelectButton from 'primevue/selectbutton'
@@ -89,6 +90,7 @@ app.component('Form', Form)
 app.component('FormField', FormField)
 app.component('Image', Image)
 app.component('InputText', InputText)
+app.component('Message', Message)
 app.component('Popover', Popover)
 app.component('Select', Select)
 app.component('SelectButton', SelectButton)

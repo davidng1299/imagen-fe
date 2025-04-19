@@ -5,7 +5,7 @@
   import { useToast } from 'primevue'
   import { ref } from 'vue'
   import { getFullImageBase64String } from '@/utils/helpers'
-  import type { SaveImageResponse } from '@/models/dtos/ImageGenerationDto'
+  import type { SaveImageResponse } from '@/models/dtos/ImageDto'
 
   const props = defineProps<{
     isOpen: boolean
