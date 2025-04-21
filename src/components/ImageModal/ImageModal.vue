@@ -6,6 +6,7 @@
   import { ref } from 'vue'
   import { getFullImageBase64String } from '@/utils/helpers'
   import type { SaveImageResponse } from '@/models/dtos/ImageDto'
+  import LoginGuardDialog from '../LoginGuardDialog/LoginGuardDialog.vue'
 
   const props = defineProps<{
     isOpen: boolean
@@ -13,11 +14,16 @@
     base64_string: string
   }>()
 
-  const { user } = useAuth0()
+  const { isAuthenticated, user } = useAuth0()
   const toast = useToast()
   const loading = ref(false)
   const response = ref<SaveImageResponse | undefined>(undefined)
+  const loginDialogRef = ref()
   const { saveImage } = useImageApi()
+
+  const showDialog = () => {
+    loginDialogRef.value.show()
+  }
 
   const onSave = async () => {
     try {
@@ -58,6 +64,7 @@
 </script>
 
 <template>
+  <LoginGuardDialog ref="loginDialogRef"></LoginGuardDialog>
   <Dialog
     :visible="isOpen"
     @update:visible="onClose"
@@ -84,7 +91,15 @@
       <Button
         :icon="response ? 'pi pi-check' : 'pi pi-bookmark'"
         :label="response ? 'Saved' : 'Save'"
-        @click="onSave"
+        @click="
+          () => {
+            if (!isAuthenticated || !user) {
+              showDialog()
+            } else {
+              onSave()
+            }
+          }
+        "
         :disabled="loading || !!response"
       ></Button>
     </div>

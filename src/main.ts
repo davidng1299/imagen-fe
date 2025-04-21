@@ -9,6 +9,8 @@ import 'primeicons/primeicons.css'
 import { definePreset } from '@primeuix/themes'
 import router from './router/router'
 import Avatar from 'primevue/avatar'
+import ConfirmDialog from 'primevue/confirmdialog'
+import ConfirmationService from 'primevue/confirmationservice'
 import Button from 'primevue/button'
 import Dialog from 'primevue/dialog'
 import Divider from 'primevue/divider'
@@ -84,6 +86,7 @@ app.use(createPinia())
 
 app.component('Avatar', Avatar)
 app.component('Button', Button)
+app.component('ConfirmDialog', ConfirmDialog)
 app.component('Dialog', Dialog)
 app.component('Divider', Divider)
 app.component('Form', Form)
@@ -111,6 +114,7 @@ app.use(PrimeVue, {
     },
   },
 })
+app.use(ConfirmationService)
 app.use(ToastService)
 app.use(router)
 app.use(

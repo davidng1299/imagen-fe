@@ -1,12 +1,20 @@
 <script setup lang="ts">
   import { useAuth0 } from '@auth0/auth0-vue'
   import { useRouter } from 'vue-router'
+  import { ref } from 'vue'
+  import LoginGuardDialog from '../LoginGuardDialog/LoginGuardDialog.vue'
 
-  const router = useRouter()
   const { isAuthenticated, user } = useAuth0()
+  const router = useRouter()
+  const loginDialogRef = ref()
+
+  const showDialog = () => {
+    loginDialogRef.value.show() // Calls the child's function
+  }
 </script>
 
 <template>
+  <LoginGuardDialog ref="loginDialogRef"></LoginGuardDialog>
   <aside class="w-16 bg-bg-primary border-r border-gray-200">
     <div class="bg-color-white flex flex-col justify-between items-center flex-1 gap-16 mt-8">
       <Button
@@ -28,7 +36,6 @@
       />
       <Button
         icon="pi pi-images text-xl"
-        v-if="!!isAuthenticated && !!user"
         rounded
         variant="text"
         v-tooltip.right="{
@@ -40,7 +47,11 @@
         }"
         @click="
           () => {
-            router.push('/gallery')
+            if (!isAuthenticated || !user) {
+              showDialog()
+            } else {
+              router.push('/gallery')
+            }
           }
         "
       />

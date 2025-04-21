@@ -48,28 +48,36 @@
 <template>
   <div class="bg-color-primary h-14 flex justify-between items-center px-4">
     <div>ImaGen Logo</div>
-    <div v-if="!isAuthenticated" class="flex gap-2">
-      <Button label="Log in" @click="login" class="login-button" />
-      <Button label="Sign up" @click="signup" class="login-button" />
-    </div>
-    <div v-if="isAuthenticated" class="flex gap-2">
-      <Button unstyled @click="toggle" class="flex items-center">
-        <Avatar :image="user?.picture" size="medium" shape="circle" />
-      </Button>
 
-      <Popover ref="popover">
-        <div class="flex flex-col items-start">
-          <div class="px-2">
-            <b>{{ user?.nickname }}</b>
-          </div>
-          <Divider class="m-1" />
-          <Button
-            class="w-full px-2 text-red-500 bg-transparent hover:bg-surface-100 flex items-center justify-start border-none rounded-md"
-            @click="signout"
-            ><i class="pi pi-sign-out pr-1"></i>Log out</Button
-          >
+    <div class="flex gap-2 items-center">
+      <div>
+        <Button label="About" @click="login" variant="link" class="text-white" />
+      </div>
+      <div class="nav-user">
+        <div v-if="!isAuthenticated" class="flex gap-2">
+          <Button label="Log in" @click="login" class="login-button" />
+          <Button label="Sign up" @click="signup" class="login-button" />
         </div>
-      </Popover>
+        <div v-if="isAuthenticated" class="flex gap-2">
+          <Button unstyled @click="toggle" class="flex items-center">
+            <Avatar :image="user?.picture" size="medium" shape="circle" />
+          </Button>
+
+          <Popover ref="popover">
+            <div class="flex flex-col items-start">
+              <div class="px-2">
+                <b>{{ user?.nickname }}</b>
+              </div>
+              <Divider class="m-1" />
+              <Button
+                class="w-full px-2 text-red-500 bg-transparent hover:bg-surface-100 flex items-center justify-start border-none rounded-md"
+                @click="signout"
+                ><i class="pi pi-sign-out pr-1"></i>Log out</Button
+              >
+            </div>
+          </Popover>
+        </div>
+      </div>
     </div>
   </div>
 </template>

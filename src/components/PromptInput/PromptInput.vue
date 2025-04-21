@@ -112,7 +112,7 @@
               }"
             >
               <template #header>
-                <div class="text-sm px-3 py-1">
+                <div class="text-sm px-3 py-1.5">
                   <b>Size</b>
                 </div>
               </template>
@@ -141,7 +141,7 @@
               }"
             >
               <template #header>
-                <div class="text-sm px-3 py-1 flex justify-between items-center">
+                <div class="text-sm px-3 py-1.5 flex justify-between items-center">
                   <b>Style</b>
                   <i
                     class="pi pi-info-circle"
