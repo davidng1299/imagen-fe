@@ -51,7 +51,7 @@
 
     <div class="flex gap-2 items-center">
       <div>
-        <Button label="About" @click="login" variant="link" class="text-white" />
+        <Button label="About" variant="link" class="text-white" disabled />
       </div>
       <div class="nav-user">
         <div v-if="!isAuthenticated" class="flex gap-2">

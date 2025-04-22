@@ -8,16 +8,33 @@
   const { isAuthenticated, user } = useAuth0()
   const { getImages } = useImageApi()
   const imageData = ref<OAImage[]>([])
+  const popover = ref()
+  const sort = ref<{ key: string; dir: string }>()
 
   watch([isAuthenticated, user], async ([isAuthenticated, user]) => {
     if (isAuthenticated && isNotEmpty(user)) {
       try {
         const response = await getImages({ userId: getDbUserId(user?.sub) })
-        imageData.value = [...response, ...response, ...response, ...response]
-        // imageData.value = response
+        imageData.value = response
       } catch (err) {
         console.error('Failed to load backend user:', err)
       }
+    }
+  })
+
+  watch(sort, (sort) => {
+    if (!!sort) {
+      imageData.value = [...imageData.value].sort((a, b) => {
+        if (sort.key === 'size') {
+          return sort.dir === 'asc' ? a.size - b.size : b.size - a.size
+        }
+        if (sort.key === 'createdAt') {
+          return sort.dir === 'asc'
+            ? new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+            : new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        }
+        return 0
+      })
     }
   })
 
@@ -25,8 +42,7 @@
     try {
       if (isAuthenticated.value) {
         const response = await getImages({ userId: getDbUserId(user.value?.sub) })
-        imageData.value = [...response, ...response, ...response, ...response]
-        // imageData.value = response
+        imageData.value = response
       }
     } catch (error) {
       console.error('API call failed:', error)
@@ -63,14 +79,107 @@
     }
   }
 
-  function getFileNameFromUrl(url: string) {
+  const getFileNameFromUrl = (url: string) => {
     return url.split('/').pop()?.split('?')[0] || 'download.png'
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const toggle = (event: any) => {
+    popover.value.toggle(event)
+  }
+
+  const setSort = (key: string) => {
+    if (!sort.value) {
+      sort.value = {
+        key: key,
+        dir: 'desc',
+      }
+    } else {
+      if (sort.value.key !== key) {
+        sort.value = {
+          key: key,
+          dir: 'desc',
+        }
+      } else {
+        if (sort.value.dir == 'desc') {
+          sort.value = {
+            key: key,
+            dir: 'asc',
+          }
+        } else {
+          sort.value = undefined
+        }
+      }
+    }
   }
 </script>
 
 <template>
   <div class="w-full max-w-[1080px]">
-    <p class="text-xl">Gallery</p>
+    <div class="flex justify-between items-center">
+      <p class="text-xl">Gallery</p>
+      <Button icon="pi pi-filter-fill" variant="text" @click="toggle"></Button>
+      <Popover ref="popover">
+        <div class="w-30">
+          <div class="flex items-center justify-between">
+            <p>Date added</p>
+            <Button
+              v-if="sort?.key !== 'createdAt'"
+              icon="pi pi-sort-alpha-down"
+              size="small"
+              variant="text"
+              severity="secondary"
+              class="rounded-md"
+              @click="setSort('createdAt')"
+            ></Button>
+            <Button
+              v-if="sort?.key == 'createdAt' && sort?.dir == 'asc'"
+              icon="pi pi-sort-alpha-down"
+              size="small"
+              variant="text"
+              class="rounded-md"
+              @click="setSort('createdAt')"
+            ></Button>
+            <Button
+              v-if="sort?.key == 'createdAt' && sort?.dir == 'desc'"
+              icon="pi pi-sort-alpha-down-alt"
+              size="small"
+              variant="text"
+              class="rounded-md"
+              @click="setSort('createdAt')"
+            ></Button>
+          </div>
+          <div class="flex items-center justify-between">
+            <p>Size</p>
+            <Button
+              v-if="sort?.key !== 'size'"
+              icon="pi pi-sort-numeric-down"
+              size="small"
+              variant="text"
+              severity="secondary"
+              class="rounded-md"
+              @click="setSort('size')"
+            ></Button>
+            <Button
+              v-if="sort?.key == 'size' && sort?.dir == 'asc'"
+              icon="pi pi-sort-numeric-down"
+              size="small"
+              variant="text"
+              class="rounded-md"
+              @click="setSort('size')"
+            ></Button>
+            <Button
+              v-if="sort?.key == 'size' && sort?.dir == 'desc'"
+              icon="pi pi-sort-numeric-down-alt"
+              size="small"
+              variant="text"
+              class="rounded-md"
+              @click="setSort('size')"
+            ></Button>
+          </div>
+        </div>
+      </Popover>
+    </div>
     <Divider />
     <div class="masonry">
       <div v-for="i in imageData" :key="i.id" class="relative image-container">

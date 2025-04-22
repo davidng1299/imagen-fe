@@ -12,6 +12,7 @@
     isOpen: boolean
     onClose: () => void
     base64_string: string
+    size: string
   }>()
 
   const { isAuthenticated, user } = useAuth0()
@@ -32,6 +33,7 @@
       response.value = await saveImage({
         base64String: props.base64_string,
         userId: getDbUserId(user.value?.sub),
+        size: props.size,
       })
 
       toast.add({

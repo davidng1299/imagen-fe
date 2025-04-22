@@ -189,6 +189,7 @@
   <ImageModal
     v-if="response?.base64String"
     :base64_string="response?.base64String"
+    :size="response?.size"
     :isOpen="isOpen"
     :onClose="onClose"
   />

@@ -3,4 +3,5 @@ export interface OAImage {
   createdAt: string
   userId: string
   url: string
+  size: number
 }

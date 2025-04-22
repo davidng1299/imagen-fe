@@ -13,6 +13,7 @@ export interface OAImageGenerationResponse {
 export interface SaveImageRequest {
   base64String: string
   userId: string
+  size: string
 }
 
 export interface SaveImageResponse {
