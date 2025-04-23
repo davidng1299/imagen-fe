@@ -4,10 +4,12 @@
   import { ref, watch } from 'vue'
   import { getDbUserId, isNotEmpty } from '@/utils/helpers'
   import { useAuth } from '@/composables/useAuth'
+  import { useRouter } from 'vue-router'
 
   const { isAuthenticated, user, loginWithRedirect, logout } = useAuth0()
   const { getUser } = useAuth()
   const popover = ref()
+  const router = useRouter()
 
   watch([isAuthenticated, user], async ([isAuthenticated, user]) => {
     if (isAuthenticated && isNotEmpty(user)) {
@@ -46,12 +48,25 @@
 </script>
 
 <template>
-  <div class="bg-color-primary h-14 flex justify-between items-center px-4">
-    <div>ImaGen Logo</div>
+  <div class="gradient-bg h-14 flex justify-between items-center px-4">
+    <div>
+      <a href="/">
+        <img src="../../assets/images/imagen_logo.png" alt="Imagen Logo" class="h-6" />
+      </a>
+    </div>
 
     <div class="flex gap-2 items-center">
       <div>
-        <Button label="About" variant="link" class="text-white" disabled />
+        <Button
+          label="About"
+          variant="link"
+          class="text-white"
+          @click="
+            () => {
+              router.push('/about')
+            }
+          "
+        />
       </div>
       <div class="nav-user">
         <div v-if="!isAuthenticated" class="flex gap-2">

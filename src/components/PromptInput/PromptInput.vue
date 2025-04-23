@@ -15,7 +15,6 @@
     prompt: string
     size: string
     style: string
-    quality: string
   }
 
   const { generateAiImage } = useImageApi()
@@ -28,23 +27,24 @@
     prompt: '',
     size: '256x256',
     style: 'vivid',
-    quality: 'standard',
   })
   const sizeOptions = ref(OAImageSizeOptions)
 
-  // TODO: Actually validates data
   const resolver = zodResolver(
     z
       .object({
         prompt: z.string().min(1, { message: 'Please enter a prompt' }),
         size: z.string(),
         style: z.string(),
-        quality: z.string(),
       })
-      .refine((data) => !AcceptedModel3Sizes.includes(data.size), {
-        message: 'Please select a different size',
-        path: ['size'],
-      }),
+      .refine(
+        (data) =>
+          !((isHD.value || data.style == 'natural') && !AcceptedModel3Sizes.includes(data.size)),
+        {
+          message: 'Please select a larger size to generate HD or natural images',
+          path: ['size'],
+        },
+      ),
   )
 
   const onSubmit = async (event: FormSubmitEvent) => {
@@ -80,10 +80,12 @@
 
 <template>
   <Toast />
-  <p class="text-2xl">Type your thoughts. Watch them become images.</p>
+  <p class="text-2xl font-semibold text-color-secondary">
+    Type your thoughts. Watch them become images.
+  </p>
   <Form :initialValues :resolver @submit="onSubmit" class="w-full rounded-2xl border p-2 my-5">
     <div class="relative">
-      <FormField name="size">
+      <FormField v-slot="$field" name="prompt">
         <Textarea
           id="prompt"
           name="prompt"
@@ -93,11 +95,22 @@
           :disabled="loading"
           placeholder="Start describing your image..."
         ></Textarea>
+        <Message v-if="$field?.invalid" severity="error" size="small" variant="simple">{{
+          $field.error?.message
+        }}</Message>
       </FormField>
 
       <div class="flex justify-between items-end">
         <div class="flex gap-2 items-center">
-          <FormField name="size">
+          <FormField v-slot="$field" name="size" class="relative">
+            <Message
+              v-if="$field?.invalid"
+              severity="error"
+              size="small"
+              variant="simple"
+              class="absolute -top-5 text-nowrap"
+              >{{ $field.error?.message }}</Message
+            >
             <Select
               name="size"
               optionLabel="label"
@@ -117,13 +130,6 @@
                 </div>
               </template>
             </Select>
-            <!-- <Message
-              v-if="$form.username?.invalid"
-              severity="error"
-              size="small"
-              variant="simple"
-              >{{ $form.username.error.message }}</Message
-            > -->
           </FormField>
 
           <FormField name="style">
@@ -205,7 +211,7 @@
   }
 
   .toggle-on {
-    background-color: var(--primary-400);
+    background: linear-gradient(90deg, var(--color-secondary) 0%, var(--color-primary) 100%);
     color: var(--primary);
   }
 </style>

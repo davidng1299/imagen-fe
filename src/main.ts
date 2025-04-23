@@ -32,17 +32,17 @@ import { createAuth0 } from '@auth0/auth0-vue'
 const MyPreset = definePreset(Aura, {
   semantic: {
     primary: {
-      50: '#fff4ed',
-      100: '#ffe5d4',
-      200: '#ffc7a8',
-      300: '#ffa071',
-      400: '#ff7f50',
-      500: '#fe4711',
-      600: '#ef2d07',
-      700: '#c61c08',
-      800: '#9d190f',
-      900: '#7e1810',
-      950: '#440806',
+      50: '#f6f7f9',
+      100: '#eceff2',
+      200: '#d4dae3',
+      300: '#aebbcb',
+      400: '#8296ae',
+      500: '#637a94',
+      600: '#526681',
+      700: '#404f64',
+      800: '#384354',
+      900: '#323b48',
+      950: '#212630',
     },
     colorScheme: {
       light: {

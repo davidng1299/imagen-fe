@@ -117,7 +117,7 @@
 <template>
   <div class="w-full max-w-[1080px]">
     <div class="flex justify-between items-center">
-      <p class="text-xl">Gallery</p>
+      <p class="text-3xl text-color-secondary">Gallery</p>
       <Button icon="pi pi-filter-fill" variant="text" @click="toggle"></Button>
       <Popover ref="popover">
         <div class="w-30">
@@ -137,7 +137,7 @@
               icon="pi pi-sort-alpha-down"
               size="small"
               variant="text"
-              class="rounded-md"
+              class="rounded-md text-color-primary"
               @click="setSort('createdAt')"
             ></Button>
             <Button
@@ -145,7 +145,7 @@
               icon="pi pi-sort-alpha-down-alt"
               size="small"
               variant="text"
-              class="rounded-md"
+              class="rounded-md text-color-primary"
               @click="setSort('createdAt')"
             ></Button>
           </div>
@@ -165,7 +165,7 @@
               icon="pi pi-sort-numeric-down"
               size="small"
               variant="text"
-              class="rounded-md"
+              class="rounded-md text-color-primary"
               @click="setSort('size')"
             ></Button>
             <Button
@@ -173,31 +173,33 @@
               icon="pi pi-sort-numeric-down-alt"
               size="small"
               variant="text"
-              class="rounded-md"
+              class="rounded-md text-color-primary"
               @click="setSort('size')"
             ></Button>
           </div>
         </div>
       </Popover>
     </div>
-    <Divider />
+    <Divider class="mt-1" />
     <div class="masonry">
       <div v-for="i in imageData" :key="i.id" class="relative image-container">
-        <div class="absolute text-sm text-primary-200 inset-0 z-10 pointer-events-none hover-data">
+        <div
+          class="absolute text-sm text-color-primary inset-0 z-10 pointer-events-none hover-data"
+        >
           <p class="absolute bottom-2 left-2">Created on {{ formatDate(i.createdAt) }}</p>
           <div class="absolute top-0 right-1 pointer-events-auto">
             <Button
               icon="pi pi-download"
               rounded
               outlined
-              class="border-none text-primary-200"
+              class="border-none text-color-primary"
               @click="(e) => onDownload(e, i.url)"
             />
           </div>
         </div>
         <Image class="image-slot rounded-2xl" :src="i.url" preview>
           <template #previewicon>
-            <i class="pi pi-eye text-primary-200 text-2xl"></i>
+            <i class="pi pi-eye text-color-primary text-2xl"></i>
           </template>
         </Image>
       </div>

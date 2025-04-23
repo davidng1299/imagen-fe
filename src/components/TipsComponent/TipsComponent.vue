@@ -19,9 +19,8 @@
     <p><b>🎨 2. Use Style Modifiers</b></p>
     <p>You can guide the aesthetic of the image by including style cues:</p>
     <p>
-      &#8226; <code class="ig-code">photo</code>, <code class="ig-code">hyper-realistic</code>,
-      <code class="ig-code">cartoon</code>, <code class="ig-code">sketch</code>,
-      <code class="ig-code">pixel art</code>, <code class="ig-code">oil painting</code>
+      &#8226; <code>photo</code>, <code>hyper-realistic</code>, <code>cartoon</code>,
+      <code>sketch</code>, <code>pixel art</code>, <code>oil painting</code>
       .
     </p>
     <p>

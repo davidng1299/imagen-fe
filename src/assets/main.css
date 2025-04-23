@@ -14,17 +14,17 @@
 
 @layer base {
   :root {
-    --primary-50: #fff4ed;
-    --primary-100: #ffe5d4;
-    --primary-200: #ffc7a8;
-    --primary-300: #ffa071;
-    --primary-400: #ff7f50;
-    --primary-500: #fe4711;
-    --primary-600: #ef2d07;
-    --primary-700: #c61c08;
-    --primary-800: #9d190f;
-    --primary-900: #7e1810;
-    --primary-950: #440806;
+    --primary-50: #f6f7f9;
+    --primary-100: #eceff2;
+    --primary-200: #d4dae3;
+    --primary-300: #aebbcb;
+    --primary-400: #8296ae;
+    --primary-500: #637a94;
+    --primary-600: #526681;
+    --primary-700: #404f64;
+    --primary-800: #384354;
+    --primary-900: #323b48;
+    --primary-950: #212630;
     --surface-50: #f7f7f7;
     --surface-100: #ededed;
     --surface-200: #dfdfdf;
@@ -47,10 +47,10 @@
     --text-color-emphasis: #6e6e6e;
     --text-muted-color: #7b7b7b;
     --text-muted-color-emphasis: #c8c8c8;
-    --color-primary: #ff7f50;
-    --color-secondary: #21bbbb;
-    --color-teal: #007380;
-    --color-tomato: #ff644f;
+    /* --color-primary: #ff7f50;
+    --color-secondary: #bb7821; */
+    --color-primary: #acc8ec;
+    --color-secondary: #526681;
   }
 }
 
@@ -65,8 +65,23 @@ body,
   margin: 0;
 }
 
-.ig-code {
+code {
   background-color: var(--surface-200);
   padding: 0.25rem;
   border-radius: 5px;
+}
+
+.gradient-bg {
+  /* background: linear-gradient(
+    90deg,
+    #000000 0%,
+    var(--color-secondary) 25%,
+    var(--color-primary) 100%
+  ); */
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(82, 102, 129, 1) 50%,
+    rgba(172, 200, 236, 1) 100%
+  );
 }
