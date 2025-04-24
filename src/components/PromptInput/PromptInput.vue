@@ -48,24 +48,26 @@
   )
 
   const onSubmit = async (event: FormSubmitEvent) => {
-    try {
-      loading.value = true
-      response.value = await generateAiImage({
-        prompt: event.states.prompt.value,
-        size: event.states.size.value,
-        style: event.states.style.value,
-        quality: isHD.value ? 'hd' : 'standard',
-      })
-      isOpen.value = true
-    } catch {
-      toast.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'An error has occurred, please try again.',
-        life: 3000,
-      })
-    } finally {
-      loading.value = false
+    if (event.valid) {
+      try {
+        loading.value = true
+        response.value = await generateAiImage({
+          prompt: event.states.prompt.value,
+          size: event.states.size.value,
+          style: event.states.style.value,
+          quality: isHD.value ? 'hd' : 'standard',
+        })
+        isOpen.value = true
+      } catch {
+        toast.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'An error has occurred, please try again.',
+          life: 3000,
+        })
+      } finally {
+        loading.value = false
+      }
     }
   }
 
