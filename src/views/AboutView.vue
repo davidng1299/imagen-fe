@@ -16,6 +16,7 @@
     <p>&#8226; PrimeVue - UI Component Library</p>
     <p>&#8226; Zod - Schema Validation Library</p>
     <p>&#8226; Vite Configurations</p>
+
     <h3 className="text-xl font-semibold my-4 text-color-secondary">Backend (.NET)</h3>
     <p>&#8226; .NET 9.0 - ASP.NET Core</p>
     <p>
@@ -26,6 +27,7 @@
     <p>&#8226; API Integration - OpenAI & AWS</p>
     <p>&#8226; Docker - Containerisation</p>
     <p>&#8226; PostgreSQL Database</p>
+
     <h3 className="text-xl font-semibold my-4 text-color-secondary">API Integration</h3>
     <p>
       &#8226; OpenAI API - creating images using <code>DALL·E·2</code> or
@@ -33,6 +35,14 @@
     </p>
     <p>&#8226; Auth0 Authentication</p>
     <p>&#8226; AWS - S3 bucket for storing and fetching images</p>
+
+    <h3 className="text-xl font-semibold my-4 text-color-secondary">CI/CD</h3>
+    <p>&#8226; Github Actions - pre-deployment workflows</p>
+
+    <h3 className="text-xl font-semibold my-4 text-color-secondary">Github</h3>
+    <p>&#8226; Frontend: https://github.com/davidng1299/imagen-fe</p>
+    <p>&#8226; Backend: https://github.com/davidng1299/ImaGen-BE</p>
+
     <h3 className="text-lg font-semibold my-4 text-color-secondary">
       Developed and designed by David Nguyen.
     </h3>

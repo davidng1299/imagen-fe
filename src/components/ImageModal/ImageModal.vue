@@ -73,11 +73,11 @@
     modal
     header="Your image is ready!"
     :pt="{
-      content: 'flex flex-col items-center',
+      content: 'flex flex-col items-center max-w-full',
     }"
   >
     <Image
-      class="min-w-[500px] max-w-4xl flex items-center justify-center p-6"
+      class="flex items-center justify-center"
       :src="getFullImageBase64String(base64_string, 'png')"
       alt="Image"
       preview

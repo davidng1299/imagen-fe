@@ -170,6 +170,7 @@
         <Button
           type="submit"
           icon="pi pi-search"
+          size="small"
           :loading="loading"
           class="generate-button"
           variant="text"
@@ -205,6 +206,8 @@
 
 <style scoped>
   .generate-button {
+    width: 32px;
+    height: 32px;
     background-color: black;
     color: var(--primary);
     &:hover {

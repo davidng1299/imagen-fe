@@ -1,6 +1,6 @@
-# imagen-fe
+# ImaGen Frontend Server
 
-This template should help get you started developing with Vue 3 in Vite.
+ImaGen allows you to create AI-generated images using text prompts, leveraging OpenAI Dall-E model. The frontend is built with Vue 3.
 
 ## Recommended IDE Setup
 
@@ -10,30 +10,39 @@ This template should help get you started developing with Vue 3 in Vite.
 
 TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
 
-## Customize configuration
+## Getting Started
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### Installation
 
-## Project Setup
+Clone the project
 
-```sh
+```bash
+git clone https://github.com/davidng1299/imagen-fe.git
+cd imagen-fe
+```
+
+Install packages
+
+```bash
 pnpm install
 ```
 
 ### Compile and Hot-Reload for Development
 
-```sh
-pnpm dev
+```bash
+pnpm run dev
 ```
 
 ### Type-Check, Compile and Minify for Production
 
-```sh
-pnpm build
+```bash
+pnpm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## Configuration
 
-```sh
-pnpm lint
-```
+This project uses .env file to load environment variables. You will need to set up your own Auth0 API and store the API keys in a .env file.
+
+## Contact
+
+If you have any question or would like to contribute to this project, please feel free to contact me at davidng2312@gmail.com.
