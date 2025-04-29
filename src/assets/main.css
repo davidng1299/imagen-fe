@@ -1,7 +1,7 @@
 /* color palette from <https://github.com/vuejs/theme> */
 @import 'primevue/tailwind.css' layer(primevue-tailwind);
 
-@layer tailwind-base, primevue, primevue-tailwind, tailwind-utilities;
+@layer tailwind-base, primevue, primevue-tailwind, tailwind-utilities, light-mode-only;
 
 @layer tailwind-base {
   @import 'tailwindcss/base';
@@ -10,6 +10,18 @@
 @layer tailwind-utilities {
   @import 'tailwindcss/components';
   @import 'tailwindcss/utilities';
+}
+
+@layer light-mode-only {
+  :root {
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme:dark) {
+    :root {
+      color-scheme: light !important;
+    }
+  }
 }
 
 @layer base {
@@ -47,8 +59,6 @@
     --text-color-emphasis: #6e6e6e;
     --text-muted-color: #7b7b7b;
     --text-muted-color-emphasis: #c8c8c8;
-    /* --color-primary: #ff7f50;
-    --color-secondary: #bb7821; */
     --color-primary: #acc8ec;
     --color-secondary: #526681;
   }
@@ -72,16 +82,8 @@ code {
 }
 
 .gradient-bg {
-  /* background: linear-gradient(
-    90deg,
-    #000000 0%,
-    var(--color-secondary) 25%,
-    var(--color-primary) 100%
-  ); */
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 1) 0%,
-    rgba(82, 102, 129, 1) 50%,
-    rgba(172, 200, 236, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(82, 102, 129, 1) 50%,
+      rgba(172, 200, 236, 1) 100%);
 }
