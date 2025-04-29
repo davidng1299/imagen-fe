@@ -40,8 +40,18 @@
     <p>&#8226; Github Actions - pre-deployment workflows</p>
 
     <h3 className="text-xl font-semibold my-4 text-color-secondary">Github</h3>
-    <p>&#8226; Frontend: https://github.com/davidng1299/imagen-fe</p>
-    <p>&#8226; Backend: https://github.com/davidng1299/ImaGen-BE</p>
+    <p>
+      &#8226; Frontend:
+      <a href="https://github.com/davidng1299/imagen-fe" target="_blank"
+        >https://github.com/davidng1299/imagen-fe</a
+      >
+    </p>
+    <p>
+      &#8226; Backend:
+      <a href="https://github.com/davidng1299/ImaGen-BE" target="_blank"
+        >https://github.com/davidng1299/ImaGen-BE</a
+      >
+    </p>
 
     <h3 className="text-lg font-semibold my-4 text-color-secondary">
       Developed and designed by David Nguyen.

@@ -25,9 +25,10 @@
   const response = ref<OAImageGenerationResponse | undefined>(undefined)
   const initialValues = ref<PromptInput>({
     prompt: '',
-    size: '256x256',
+    size: '1024x1024',
     style: 'vivid',
   })
+
   const sizeOptions = ref(OAImageSizeOptions)
 
   const resolver = zodResolver(
@@ -151,21 +152,22 @@
               <template #header>
                 <div class="text-sm px-3 py-1.5 flex justify-between items-center">
                   <b>Style</b>
-                  <i
-                    class="pi pi-info-circle"
-                    v-tooltip.right="{
-                      value:
-                        'Vivid generates hyper-real and dramatic images. Natural produces more natural, less hyper-real looking images.',
-                      pt: {
-                        text: 'text-xs',
-                      },
-                      showDelay: 500,
-                    }"
-                  ></i>
                 </div>
               </template>
             </Select>
           </FormField>
+
+          <i
+            class="pi pi-info-circle"
+            v-tooltip.right="{
+              value:
+                'Vivid generates hyper-real and dramatic images. Natural produces more natural, less hyper-real looking images. Style is only supported for high-quality images.',
+              pt: {
+                text: 'text-xs',
+              },
+              showDelay: 500,
+            }"
+          ></i>
         </div>
         <Button
           type="submit"
