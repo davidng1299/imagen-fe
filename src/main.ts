@@ -14,6 +14,7 @@ import ConfirmationService from 'primevue/confirmationservice'
 import Button from 'primevue/button'
 import Dialog from 'primevue/dialog'
 import Divider from 'primevue/divider'
+import Drawer from 'primevue/drawer';
 import { Form } from '@primevue/forms'
 import { FormField } from '@primevue/forms'
 import Image from 'primevue/image'
@@ -22,6 +23,7 @@ import Message from 'primevue/message'
 import Popover from 'primevue/popover'
 import Select from 'primevue/select'
 import SelectButton from 'primevue/selectbutton'
+import Skeleton from 'primevue/skeleton';
 import Textarea from 'primevue/textarea'
 import Toast from 'primevue/toast'
 import ToastService from 'primevue/toastservice'
@@ -73,6 +75,7 @@ app.component('Button', Button)
 app.component('ConfirmDialog', ConfirmDialog)
 app.component('Dialog', Dialog)
 app.component('Divider', Divider)
+app.component('Drawer', Drawer)
 app.component('Form', Form)
 app.component('FormField', FormField)
 app.component('Image', Image)
@@ -81,6 +84,7 @@ app.component('Message', Message)
 app.component('Popover', Popover)
 app.component('Select', Select)
 app.component('SelectButton', SelectButton)
+app.component('Skeleton', Skeleton)
 app.component('Textarea', Textarea)
 app.component('Toast', Toast)
 app.directive('tooltip', Tooltip)
