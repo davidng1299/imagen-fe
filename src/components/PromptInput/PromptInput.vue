@@ -31,6 +31,14 @@
 
   const sizeOptions = ref(OAImageSizeOptions)
 
+  // If there's an image in localStorage display it
+  const unsavedImgObj = localStorage.getItem("unsavedImgObj")
+  if (unsavedImgObj) {
+    response.value = JSON.parse(unsavedImgObj)
+    isOpen.value = true
+    localStorage.removeItem("unsavedImgObj")
+  }
+
   const resolver = zodResolver(
     z
       .object({
@@ -198,7 +206,7 @@
 
   <ImageModal
     v-if="response?.base64String"
-    :base64_string="response?.base64String"
+    :base64String="response?.base64String"
     :size="response?.size"
     :isOpen="isOpen"
     :onClose="onClose"

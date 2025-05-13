@@ -11,7 +11,7 @@
   const props = defineProps<{
     isOpen: boolean
     onClose: () => void
-    base64_string: string
+    base64String: string
     size: string
   }>()
 
@@ -31,7 +31,7 @@
       loading.value = true
 
       response.value = await saveImage({
-        base64String: props.base64_string,
+        base64String: props.base64String,
         userId: getDbUserId(user.value?.sub),
         size: props.size,
       })
@@ -55,7 +55,7 @@
   }
 
   const onDownload = () => {
-    const imageUrl = getFullImageBase64String(props.base64_string, 'png')
+    const imageUrl = getFullImageBase64String(props.base64String, 'png')
     const link = document.createElement('a')
     link.href = imageUrl
     link.download = 'downloaded-image.png'
@@ -63,10 +63,19 @@
     link.click()
     document.body.removeChild(link)
   }
+
+  // Store image in localStorage to preserve the state after login
+  const onLogin = () => {
+    const imgObj = {
+      base64String: props.base64String,
+      size: props.size
+    }
+    localStorage.setItem("unsavedImgObj", JSON.stringify(imgObj))
+  }
 </script>
 
 <template>
-  <LoginGuardDialog ref="loginDialogRef"></LoginGuardDialog>
+  <LoginGuardDialog ref="loginDialogRef" :callback="onLogin"/>
   <Dialog
     :visible="isOpen"
     @update:visible="onClose"
@@ -78,7 +87,7 @@
   >
     <Image
       class="flex items-center justify-center"
-      :src="getFullImageBase64String(base64_string, 'png')"
+      :src="getFullImageBase64String(base64String, 'png')"
       alt="Image"
       preview
     />

@@ -2,6 +2,10 @@
   import { useAuth0 } from '@auth0/auth0-vue'
   import { useConfirm } from 'primevue'
 
+  const props = defineProps<{
+    callback?: () => void
+  }>()
+
   const { loginWithRedirect } = useAuth0()
   const confirm = useConfirm()
 
@@ -19,6 +23,7 @@
         class: 'bg-black border-none',
       },
       accept: async () => {
+        props.callback?.()
         await loginWithRedirect()
       },
       reject: () => {},
